@@ -1,5 +1,6 @@
 <?php
 
+use App\Constants\PoseStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -21,6 +22,7 @@ class CreatePosesTable extends Migration
             $table->string('image_url', 256);
             $table->tinyInteger('people_count')->default(2);
             $table->string('description')->nullable();
+            $table->tinyInteger('status')->default(PoseStatus::PENDING);
             $table->timestamps();
         });
     }

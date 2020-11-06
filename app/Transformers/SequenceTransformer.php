@@ -6,7 +6,7 @@ use App\Models\Pose;
 use League\Fractal\TransformerAbstract;
 
 
-class PoseShowTransformer extends TransformerAbstract
+class SequenceTransformer extends TransformerAbstract
 {
     public function transform(Pose $pose){
         return[
@@ -16,8 +16,7 @@ class PoseShowTransformer extends TransformerAbstract
             'type' => $pose->type,
             'image_url' => $pose->image_url,
             'people_count' => $pose->people_count,
-            'description' => $pose->description,
-            'status' => $pose->status
+            'description' => $pose->description
         ];
     }
 }
