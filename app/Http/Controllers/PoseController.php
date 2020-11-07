@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Constants\PoseStatus;
+use App\Http\Requests\PoseSearchRequest;
 use App\Http\Requests\PoseStoreRequest;
 use App\Http\Requests\PoseUpdateRequest;
 use App\Models\Pose;
+use App\Transformers\PoseMinimalTransformer;
 use App\Transformers\PoseShowTransformer;
 use Illuminate\Http\JsonResponse;
 
@@ -44,5 +46,12 @@ class PoseController extends BaseController
         Pose::findOrFail($id)->delete();
 
         return new JsonResponse(null, JsonResponse::HTTP_NO_CONTENT);
+    }
+
+    public function search(PoseSearchRequest $request)
+    {
+        $poses = Pose::select('id', 'name')->where('name', 'like', '%' . $request->name . '%')->get();
+
+        return $this->collection($poses, new PoseMinimalTransformer);
     }
 }
