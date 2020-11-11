@@ -11,6 +11,16 @@ use League\Fractal\Resource\Item;
 use League\Fractal\Serializer\DataArraySerializer;
 use League\Fractal\TransformerAbstract;
 
+/**
+ * @OA\Info(
+ *   title="Acro Game - API",
+ *  version="1.0.0",
+ *  @OA\Contact(
+ *    email="viliusgrizas@gmail.com",
+ *    name="Vilius Grižas"
+ *  )
+ * )
+ */
 class BaseController extends Controller
 {
     public function item(Model $model, TransformerAbstract $transformer)

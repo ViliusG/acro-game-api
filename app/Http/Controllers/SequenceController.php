@@ -3,16 +3,39 @@
 namespace App\Http\Controllers;
 
 use App\Constants\Type;
-use App\Http\Requests\GenerateSequenceRequest;
+use App\Http\Requests\Sequence\GenerateSequenceRequest;
 use App\Models\Pose;
 use App\Transformers\SequenceTransformer;
 use League\Fractal\Scope;
 
 class SequenceController extends BaseController
 {
+
     /**
-     * Create a new controller instance.
-     *
+     * @OA\Post(
+     *   path="/sequence/generate",
+     *   summary="Generates a sequence according to parameters passed",
+     *   tags={"Sequence"},
+     *     @OA\Parameter(
+     *          name="Authorization",
+     *          in="header",
+     *          required=true,
+     *          description="Generated user token",
+     *          example="uIPdxJeJiFyUnUnkhVE7eAgOS6EADpL7nEaWrsGl4rPENRAuyfrrMkBns0ndqEhlmWlTfSxl5Dnbfaf0ViYQ8b1vnbch",
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/GenerateSequenceRequest"),
+     *     ),
+     *     @OA\Response(
+     *         response="200",
+     *         description="Login",
+     *         @OA\JsonContent(ref="#/components/schemas/SequenceGenerateResponse")
+     *     )
+     * )
      * @param GenerateSequenceRequest $request
      * @return Scope
      */

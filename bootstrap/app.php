@@ -2,6 +2,7 @@
 
 use League\Fractal\ScopeFactory;
 use League\Fractal\ScopeFactoryInterface;
+use SwaggerLume\ServiceProvider;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
@@ -63,6 +64,7 @@ $app->singleton(
 */
 
 $app->configure('app');
+$app->configure('swagger-lume');
 
 /*
 |--------------------------------------------------------------------------
@@ -98,6 +100,7 @@ $app->register(Pearl\RequestValidate\RequestServiceProvider::class);
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register(ServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

@@ -1,0 +1,921 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Acro Game - API",
+        "contact": {
+            "name": "Vilius Grižas",
+            "email": "viliusgrizas@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Logs in the user, returns api token on success",
+                "operationId": "App\\Http\\Controllers\\AuthenticationController::login",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LoginResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Registration. Returns user info",
+                "operationId": "App\\Http\\Controllers\\AuthenticationController::register",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Register",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RegisterResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/poses": {
+            "get": {
+                "tags": [
+                    "Poses"
+                ],
+                "summary": "Logs in the user, returns api token on success",
+                "operationId": "App\\Http\\Controllers\\PoseController::index",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Generated user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "uIPdxJeJiFyUnUnkhVE7eAgOS6EADpL7nEaWrsGl4rPENRAuyfrrMkBns0ndqEhlmWlTfSxl5Dnbfaf0ViYQ8b1vnbch"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PoseIndexResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Poses"
+                ],
+                "summary": "Upload a pose to database. Will automatically have status 2 - Pending",
+                "operationId": "App\\Http\\Controllers\\PoseController::post",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Generated user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "uIPdxJeJiFyUnUnkhVE7eAgOS6EADpL7nEaWrsGl4rPENRAuyfrrMkBns0ndqEhlmWlTfSxl5Dnbfaf0ViYQ8b1vnbch"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PoseStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PosePostResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/poses/pending": {
+            "get": {
+                "tags": [
+                    "Poses"
+                ],
+                "summary": "All the pending poses. Only for admins.",
+                "operationId": "App\\Http\\Controllers\\PoseController::getPendingPoses",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Generated user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "uIPdxJeJiFyUnUnkhVE7eAgOS6EADpL7nEaWrsGl4rPENRAuyfrrMkBns0ndqEhlmWlTfSxl5Dnbfaf0ViYQ8b1vnbch"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetPendingPosesResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/poses/{id}": {
+            "get": {
+                "tags": [
+                    "Poses"
+                ],
+                "summary": "Get a specific pose by ID",
+                "operationId": "App\\Http\\Controllers\\PoseController::show",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Generated user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "uIPdxJeJiFyUnUnkhVE7eAgOS6EADpL7nEaWrsGl4rPENRAuyfrrMkBns0ndqEhlmWlTfSxl5Dnbfaf0ViYQ8b1vnbch"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PoseShowResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Poses"
+                ],
+                "summary": "Updates a pose (can be used for enabling/changing status/disabling (functions as deleting)",
+                "operationId": "App\\Http\\Controllers\\PoseController::update",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Generated user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "uIPdxJeJiFyUnUnkhVE7eAgOS6EADpL7nEaWrsGl4rPENRAuyfrrMkBns0ndqEhlmWlTfSxl5Dnbfaf0ViYQ8b1vnbch"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PoseUpdateRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PoseUpdateResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/poses/search": {
+            "get": {
+                "tags": [
+                    "Poses"
+                ],
+                "summary": "Searches the database for poses by name. Minimum length of search term is 3 letters.",
+                "operationId": "App\\Http\\Controllers\\PoseController::search",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Generated user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "uIPdxJeJiFyUnUnkhVE7eAgOS6EADpL7nEaWrsGl4rPENRAuyfrrMkBns0ndqEhlmWlTfSxl5Dnbfaf0ViYQ8b1vnbch"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PoseSearchResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sequence/generate": {
+            "post": {
+                "tags": [
+                    "Sequence"
+                ],
+                "summary": "Generates a sequence according to parameters passed",
+                "operationId": "App\\Http\\Controllers\\SequenceController::generate",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Generated user token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "uIPdxJeJiFyUnUnkhVE7eAgOS6EADpL7nEaWrsGl4rPENRAuyfrrMkBns0ndqEhlmWlTfSxl5Dnbfaf0ViYQ8b1vnbch"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GenerateSequenceRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SequenceGenerateResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "LoginRequest": {
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "example": "user@email.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "dupadupa666"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "LoginRequest"
+                }
+            },
+            "RegisterRequest": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "John Doe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "user@email.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "dupadupa666"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "RegisterRequest"
+                }
+            },
+            "PoseStoreRequest": {
+                "properties": {
+                    "name": {
+                        "required": true,
+                        "type": "string",
+                        "example": "Reverse Star"
+                    },
+                    "difficulty": {
+                        "type": "ingeger",
+                        "example": 1
+                    },
+                    "type": {
+                        "type": "ingeger",
+                        "example": 1
+                    },
+                    "image_url": {
+                        "type": "string",
+                        "example": "www.mickevičius.lt  "
+                    },
+                    "people_count": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Point!"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "PoseStoreRequest"
+                }
+            },
+            "PoseUpdateRequest": {
+                "properties": {
+                    "name": {
+                        "required": true,
+                        "type": "string",
+                        "example": "Reverse Star"
+                    },
+                    "difficulty": {
+                        "type": "ingeger",
+                        "example": 1
+                    },
+                    "type": {
+                        "type": "ingeger",
+                        "example": 1
+                    },
+                    "image_url": {
+                        "type": "string",
+                        "example": "www.mickevičius.lt  "
+                    },
+                    "people_count": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Point!"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "PoseStoreRequest"
+                }
+            },
+            "GenerateSequenceRequest": {
+                "properties": {
+                    "difficulty required": {
+                        "type": "ingeger",
+                        "example": 1
+                    },
+                    "type": {
+                        "type": "ingeger",
+                        "example": 1
+                    },
+                    "people_count": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "length - required": {
+                        "type": "integer",
+                        "example": 10
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "GenerateSequenceRequest"
+                }
+            },
+            "LoginResponse": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "token": {
+                                "type": "string",
+                                "example": "avdsfgy6v34etbrteav"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "LoginResponse"
+                }
+            },
+            "RegisterResponse": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "John Doe"
+                            },
+                            "email": {
+                                "type": "string",
+                                "example": "user@email.com"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "RegisterResponse"
+                }
+            },
+            "GetPendingPosesResponse": {
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "2"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "example": "Bob"
+                                },
+                                "difficulty": {
+                                    "type": "integer",
+                                    "example": "2"
+                                },
+                                "type": {
+                                    "type": "integer",
+                                    "example": "2"
+                                },
+                                "image_url": {
+                                    "type": "string",
+                                    "example": "www.best-website.com"
+                                },
+                                "people_count": {
+                                    "type": "integer",
+                                    "example": "2"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "example": "Point! "
+                                },
+                                "status": {
+                                    "type": "integer",
+                                    "example": "1"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "GetPendingPosesResponse"
+                }
+            },
+            "PoseIndexResponse": {
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "2"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "example": "Bob"
+                                },
+                                "difficulty": {
+                                    "type": "integer",
+                                    "example": "2"
+                                },
+                                "type": {
+                                    "type": "integer",
+                                    "example": "2"
+                                },
+                                "image_url": {
+                                    "type": "string",
+                                    "example": "www.best-website.com"
+                                },
+                                "people_count": {
+                                    "type": "integer",
+                                    "example": "2"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "example": "Point! "
+                                },
+                                "status": {
+                                    "type": "integer",
+                                    "example": "1"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "PoseIndexResponse"
+                }
+            },
+            "PosePostResponse": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Bob"
+                            },
+                            "difficulty": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "type": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "image_url": {
+                                "type": "string",
+                                "example": "www.best-website.com"
+                            },
+                            "people_count": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "description": {
+                                "type": "string",
+                                "example": "Point! "
+                            },
+                            "status": {
+                                "type": "integer",
+                                "example": "1"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "PosePostResponse"
+                }
+            },
+            "PoseSearchResponse": {
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "2"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "example": "Bob"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "PoseSearchResponse"
+                }
+            },
+            "PoseShowResponse": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Bob"
+                            },
+                            "difficulty": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "type": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "image_url": {
+                                "type": "string",
+                                "example": "www.best-website.com"
+                            },
+                            "people_count": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "description": {
+                                "type": "string",
+                                "example": "Point! "
+                            },
+                            "status": {
+                                "type": "integer",
+                                "example": "1"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "PoseShowResponse"
+                }
+            },
+            "PoseUpdateResponse": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Bob"
+                            },
+                            "difficulty": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "type": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "image_url": {
+                                "type": "string",
+                                "example": "www.best-website.com"
+                            },
+                            "people_count": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "description": {
+                                "type": "string",
+                                "example": "Point! "
+                            },
+                            "status": {
+                                "type": "integer",
+                                "example": "1"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "PoseUpdateResponse"
+                }
+            },
+            "SequenceGenerateResponse": {
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "id": {
+                                    "type": "integer",
+                                    "example": "2"
+                                },
+                                "name": {
+                                    "type": "string",
+                                    "example": "Bob"
+                                },
+                                "difficulty": {
+                                    "type": "integer",
+                                    "example": "2"
+                                },
+                                "type": {
+                                    "type": "integer",
+                                    "example": "2"
+                                },
+                                "image_url": {
+                                    "type": "string",
+                                    "example": "www.best-website.com"
+                                },
+                                "people_count": {
+                                    "type": "integer",
+                                    "example": "2"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "example": "Point! "
+                                },
+                                "status": {
+                                    "type": "integer",
+                                    "example": "1"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "SequenceGenerateResponse"
+                }
+            },
+            "Poses Schema": {
+                "title": "Poses",
+                "description": "Poses of acro yoga for the game",
+                "properties": {
+                    "id": {
+                        "description": "id"
+                    },
+                    "name": {
+                        "description": "name of the pose"
+                    },
+                    "difficulty": {
+                        "description": "Level of difficulty for the pose. Goes from 1 to 3, 1 being the easiest."
+                    },
+                    "type": {
+                        "description": "Type of the pose. Can be L-base, standing, counter-balance etc"
+                    },
+                    "image_url": {
+                        "description": "Url to the image of the pose"
+                    },
+                    "people_count": {
+                        "description": "Shows how many people are participating in a pose"
+                    },
+                    "description": {
+                        "description": "Any additional comments for the poase"
+                    },
+                    "status": {
+                        "description": "Shows whether the pose is active and being displayed to the users. 1-Active, 2-Pending confirmation (meaning it was recently submitted), 3-Disabled"
+                    }
+                },
+                "type": "object"
+            },
+            "Type Schema": {
+                "title": "Types Model",
+                "description": "Type of poses",
+                "properties": {
+                    "id": {
+                        "description": "id"
+                    },
+                    "name": {
+                        "description": "Name of the type"
+                    }
+                },
+                "type": "object"
+            },
+            "UserSchema": {
+                "title": "User Model",
+                "description": "User",
+                "properties": {
+                    "id": {
+                        "description": "ID of the user"
+                    },
+                    "name": {
+                        "description": "Name of the user"
+                    },
+                    "email": {
+                        "description": "Email of the user"
+                    },
+                    "password": {
+                        "description": "Password of the user (it is hashed, so it's not visible in the database"
+                    },
+                    "token": {
+                        "description": "User token used to authorize access for specific endpoints"
+                    },
+                    "token_expiry": {
+                        "description": "Since tokens don't last forever, this date indicates when user's token is not valid anymre (user has to relogin)"
+                    }
+                },
+                "type": "object"
+            },
+            "PoseShowTransformer": {
+                "properties": {
+                    "data": {
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "name": {
+                                "type": "string",
+                                "example": "Bob"
+                            },
+                            "difficulty": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "type": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "image_url": {
+                                "type": "string",
+                                "example": "www.best-website.com"
+                            },
+                            "people_count": {
+                                "type": "integer",
+                                "example": "2"
+                            },
+                            "description": {
+                                "type": "string",
+                                "example": "Point! "
+                            },
+                            "status": {
+                                "type": "integer",
+                                "example": "1"
+                            }
+                        },
+                        "type": "object"
+                    }
+                },
+                "type": "object",
+                "xml": {
+                    "name": "PoseShowTransformer"
+                }
+            }
+        }
+    }
+}
