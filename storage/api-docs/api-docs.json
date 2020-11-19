@@ -286,7 +286,7 @@
             }
         },
         "/sequence/generate": {
-            "post": {
+            "get": {
                 "tags": [
                     "Sequence"
                 ],

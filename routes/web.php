@@ -15,7 +15,7 @@ $router->group(['middleware' => 'auth'], function ($router) {
 });
 
 //Sequence
-$router->post('sequence/generate', 'SequenceController@generate');
+$router->get('sequence/generate', 'SequenceController@generate');
 
 //Authentication
 $router->post('login', 'AuthenticationController@login');

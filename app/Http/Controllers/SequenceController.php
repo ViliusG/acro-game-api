@@ -12,7 +12,7 @@ class SequenceController extends BaseController
 {
 
     /**
-     * @OA\Post(
+     * @OA\Get(
      *   path="/sequence/generate",
      *   summary="Generates a sequence according to parameters passed",
      *   tags={"Sequence"},
@@ -45,9 +45,9 @@ class SequenceController extends BaseController
         $peopleCount = empty($request->people_count) ? 2 : $request->people_count;
         $poses = Pose::inRandomOrder()
             ->where([
-                ['difficulty', '<=', $request->difficulty],
+                ['difficulty', '<=',(int)  $request->difficulty],
                 ['type', $type],
-                ['people_count', $request->$peopleCount]
+                ['people_count', $peopleCount]
             ])->limit($request->length)
             ->get();
 

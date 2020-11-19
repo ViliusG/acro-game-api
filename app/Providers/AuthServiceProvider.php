@@ -31,10 +31,11 @@ class AuthServiceProvider extends ServiceProvider
 
         $this->app['auth']->viaRequest('api', function ($request) {
             if (!$request->header('api_token')) {
+                //or api token is does not belong to user
                 return null;
             }
 
-            return User::where('token', $request->header('api_token'))->firstOrFail();
+            return User::where('token', $request->header('api_token'))->first();
         });
     }
 }
