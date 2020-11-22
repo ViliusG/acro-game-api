@@ -80,7 +80,7 @@
                 "operationId": "App\\Http\\Controllers\\PoseController::index",
                 "parameters": [
                     {
-                        "name": "Authorization",
+                        "name": "api-key",
                         "in": "header",
                         "description": "Generated user token",
                         "required": true,
@@ -111,7 +111,7 @@
                 "operationId": "App\\Http\\Controllers\\PoseController::post",
                 "parameters": [
                     {
-                        "name": "Authorization",
+                        "name": "api-key",
                         "in": "header",
                         "description": "Generated user token",
                         "required": true,
@@ -154,7 +154,7 @@
                 "operationId": "App\\Http\\Controllers\\PoseController::getPendingPoses",
                 "parameters": [
                     {
-                        "name": "Authorization",
+                        "name": "api-key",
                         "in": "header",
                         "description": "Generated user token",
                         "required": true,
@@ -187,7 +187,7 @@
                 "operationId": "App\\Http\\Controllers\\PoseController::show",
                 "parameters": [
                     {
-                        "name": "Authorization",
+                        "name": "api-key",
                         "in": "header",
                         "description": "Generated user token",
                         "required": true,
@@ -218,7 +218,7 @@
                 "operationId": "App\\Http\\Controllers\\PoseController::update",
                 "parameters": [
                     {
-                        "name": "Authorization",
+                        "name": "api-key",
                         "in": "header",
                         "description": "Generated user token",
                         "required": true,
@@ -261,7 +261,7 @@
                 "operationId": "App\\Http\\Controllers\\PoseController::search",
                 "parameters": [
                     {
-                        "name": "Authorization",
+                        "name": "api-key",
                         "in": "header",
                         "description": "Generated user token",
                         "required": true,
@@ -292,18 +292,6 @@
                 ],
                 "summary": "Generates a sequence according to parameters passed",
                 "operationId": "App\\Http\\Controllers\\SequenceController::generate",
-                "parameters": [
-                    {
-                        "name": "Authorization",
-                        "in": "header",
-                        "description": "Generated user token",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        },
-                        "example": "uIPdxJeJiFyUnUnkhVE7eAgOS6EADpL7nEaWrsGl4rPENRAuyfrrMkBns0ndqEhlmWlTfSxl5Dnbfaf0ViYQ8b1vnbch"
-                    }
-                ],
                 "requestBody": {
                     "required": true,
                     "content": {

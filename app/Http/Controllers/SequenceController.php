@@ -16,16 +16,6 @@ class SequenceController extends BaseController
      *   path="/sequence/generate",
      *   summary="Generates a sequence according to parameters passed",
      *   tags={"Sequence"},
-     *     @OA\Parameter(
-     *          name="Authorization",
-     *          in="header",
-     *          required=true,
-     *          description="Generated user token",
-     *          example="uIPdxJeJiFyUnUnkhVE7eAgOS6EADpL7nEaWrsGl4rPENRAuyfrrMkBns0ndqEhlmWlTfSxl5Dnbfaf0ViYQ8b1vnbch",
-     *         @OA\Schema(
-     *             type="string"
-     *         )
-     *     ),
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(ref="#/components/schemas/GenerateSequenceRequest"),

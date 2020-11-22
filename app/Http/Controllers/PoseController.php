@@ -19,7 +19,7 @@ class PoseController extends BaseController
      *   summary="Logs in the user, returns api token on success",
      *   tags={"Poses"},
      *     @OA\Parameter(
-     *          name="Authorization",
+     *          name="api-key",
      *          in="header",
      *          required=true,
      *          description="Generated user token",
@@ -46,7 +46,7 @@ class PoseController extends BaseController
      *   summary="All the pending poses. Only for admins.",
      *   tags={"Poses"},
      *     @OA\Parameter(
-     *          name="Authorization",
+     *          name="api-key",
      *          in="header",
      *          required=true,
      *          description="Generated user token",
@@ -73,7 +73,7 @@ class PoseController extends BaseController
      *   summary="Get a specific pose by ID",
      *   tags={"Poses"},
      *     @OA\Parameter(
-     *          name="Authorization",
+     *          name="api-key",
      *          in="header",
      *          required=true,
      *          description="Generated user token",
@@ -102,7 +102,7 @@ class PoseController extends BaseController
      *   summary="Upload a pose to database. Will automatically have status 2 - Pending",
      *   tags={"Poses"},
      *     @OA\Parameter(
-     *          name="Authorization",
+     *          name="api-key",
      *          in="header",
      *          required=true,
      *          description="Generated user token",
@@ -135,7 +135,7 @@ class PoseController extends BaseController
      *   summary="Updates a pose (can be used for enabling/changing status/disabling (functions as deleting)",
      *   tags={"Poses"},
      *     @OA\Parameter(
-     *          name="Authorization",
+     *          name="api-key",
      *          in="header",
      *          required=true,
      *          description="Generated user token",
@@ -181,7 +181,7 @@ class PoseController extends BaseController
      *   summary="Searches the database for poses by name. Minimum length of search term is 3 letters.",
      *   tags={"Poses"},
      *     @OA\Parameter(
-     *          name="Authorization",
+     *          name="api-key",
      *          in="header",
      *          required=true,
      *          description="Generated user token",
